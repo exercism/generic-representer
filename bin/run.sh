@@ -42,15 +42,19 @@ echo "${slug}: creating representation..."
 echo -n '' > "${representation_file}" 
 
 solution_files=$(jq -r '.files.solution[]' "${meta_config_json_file}")
-trim_leading_trailing_spaces='/./,$!d;/^\n*$/{$d;N;};/\n$/ba'
+i=0
 
 while read -r solution_file; do
-    # Append the contents of the solution file to the representation file
-    # with the solution file's leading and trailing empty lines removed
-    sed -e :a -e "${trim_leading_trailing_spaces}" "${input_dir}/${solution_file}" >> "${representation_file}"
-
     # Add an empty line to separate multiple files
-    echo '' >> "${representation_file}"
+    if [[ $i > 0 ]]; then
+        echo '' >> "${representation_file}"
+    fi
+
+    # Append the contents of the solution file to the representation file
+    # with any blank lines removed
+    sed -E -e 's/\s*$//' -e '/^$/d' "${input_dir}/${solution_file}" >> "${representation_file}"
+
+    i=$((i+1))
 done <<< "${solution_files}"
 
 # As we don't yet map any identifiers, we'll just output an empty JSON array
