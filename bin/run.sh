@@ -45,6 +45,13 @@ solution_files=$(jq -r '.files.solution[]' "${meta_config_json_file}")
 i=0
 
 while read -r solution_file; do
+    solution_file="${input_dir}/${solution_file}"
+
+    ## Skip solution files that don't exist
+    if [[ ! -f "${solution_file}" ]]; then
+        continue
+    fi
+
     # Add an empty line to separate multiple files
     if [[ $i > 0 ]]; then
         echo '' >> "${representation_file}"
@@ -52,7 +59,7 @@ while read -r solution_file; do
 
     # Append the contents of the solution file to the representation file
     # with any blank lines removed
-    sed -E -e 's/\s*$//' -e '/^$/d' "${input_dir}/${solution_file}" >> "${representation_file}"
+    sed -E -e 's/\s*$//' -e '/^$/d' "${solution_file}" >> "${representation_file}"
 
     i=$((i+1))
 done <<< "${solution_files}"
