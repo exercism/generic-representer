@@ -16,6 +16,20 @@ This repository is a [template repository](https://help.github.com/en/github/cre
 
 Once you're happy with your representer, [open an issue on the exercism/exercism repo](https://github.com/exercism/exercism/issues/new?title=%5BTRACK%5D+Request+Representer+Repository) to request an official representer repository for your track.
 
+## Default Implementation
+
+The default implementation works as follows:
+
+- The `representation.txt` contains the concatenated solution files
+  - Solution files are separated by an empty line
+  - Solution files are identified via the the `.files.solution[]` property in the `.meta/config.json` file
+- The `mapping.json` contains an empty JSON object (`{}`)
+
+### Normalizations
+
+- Blank files in the solution files are removed in the `representation.txt`
+- Line-based trailing whitespace in the solution files is removed in the `representation.txt`
+
 # Exercism TRACK_NAME_HERE Representer
 
 The Docker image to automatically create a representation for TRACK_NAME_HERE solutions submitted to [Exercism].
