@@ -44,12 +44,13 @@ echo -n '' > "${representation_file}"
 solution_files=$(jq -r '.files.solution[]' "${meta_config_json_file}")
 i=0
 
-while read -r solution_file; do
-    solution_file="${input_dir}/${solution_file}"
+while read -r relative_solution_file; do
+    solution_file="${input_dir}/${relative_solution_file}"
 
-    ## Skip solution files that don't exist
+    ## Error when the solution file doesn't exist
     if [[ ! -f "${solution_file}" ]]; then
-        continue
+        >&2 echo "Could not find solution file '${relative_solution_file}'"
+        exit 1
     fi
 
     # Add an empty line to separate multiple files
@@ -63,6 +64,11 @@ while read -r solution_file; do
 
     i=$((i+1))
 done <<< "${solution_files}"
+
+# Exit if there an error occured while processing the solution files
+if [ $? -ne 0 ]; then
+    exit $?
+fi
 
 # As we don't yet map any identifiers, we'll just output an empty JSON array
 echo '{}' > ${mapping_file}

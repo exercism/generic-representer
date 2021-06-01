@@ -21,21 +21,31 @@ for test_dir in tests/*; do
     expected_representation_file_path="${test_dir_path}/expected_representation.txt"
     mapping_file_path="${test_dir_path}/mapping.json"    
     expected_mapping_file_path="${test_dir_path}/expected_mapping.json"
+    expected_error_file_path="${test_dir_path}/expected_representation.txt"
+    expect_error="${test_dir_path}/.expect-error"
 
     bin/run.sh "${test_dir_name}" "${test_dir_path}" "${test_dir_path}"
+    exit_code=$?
 
-    echo "${test_dir_name}: comparing representation.txt to expected_representation.txt"
-    diff "${representation_file_path}" "${expected_representation_file_path}"
+    if [[ -f "${expect_error}" ]]; then
+        if [[ $exit_code -eq 0 ]]; then
+            echo 'Expected non-zero exit code'
+            exit_code=1
+        fi
+    else
+        echo "${test_dir_name}: comparing representation.txt to expected_representation.txt"
+        diff "${representation_file_path}" "${expected_representation_file_path}"
 
-    if [ $? -ne 0 ]; then
-        exit_code=1
-    fi
+        if [ $? -ne 0 ]; then
+            exit_code=1
+        fi
 
-    echo "${test_dir_name}: comparing mapping.json to expected_mapping.json"
-    diff "${mapping_file_path}" "${expected_mapping_file_path}"
+        echo "${test_dir_name}: comparing mapping.json to expected_mapping.json"
+        diff "${mapping_file_path}" "${expected_mapping_file_path}"
 
-    if [ $? -ne 0 ]; then
-        exit_code=1
+        if [ $? -ne 0 ]; then
+            exit_code=1
+        fi
     fi
 done
 
