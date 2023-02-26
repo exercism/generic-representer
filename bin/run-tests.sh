@@ -24,7 +24,7 @@ for test_dir in tests/*; do
     expected_error_file_path="${test_dir_path}/expected_representation.txt"
     expect_error="${test_dir_path}/.expect-error"
 
-    bin/run.sh "${test_dir_name}" "${test_dir_path}" "${test_dir_path}"
+    bin/run.sh "${test_dir_name}" "${test_dir_path}" "${test_dir_path}" >/dev/null 2>&1
     exit_code=$?
 
     if [[ -f "${expect_error}" ]]; then
