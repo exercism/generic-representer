@@ -22,6 +22,7 @@ docker run \
     --read-only \
     --mount type=bind,source="${PWD}/tests",destination=/opt/representer/tests \
     --mount type=tmpfs,destination=/tmp \
+    --volume "${PWD}/bin/run-tests.sh:/opt/representer/bin/run-tests.sh" \
     --workdir /opt/representer \
     --entrypoint /opt/representer/bin/run-tests.sh \
     exercism/representer
