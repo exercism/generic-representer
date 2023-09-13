@@ -10,7 +10,8 @@ This repository is a [template repository](https://help.github.com/en/github/cre
 3. Remove this [Exercism Representer Template](#exercism-representer-template) section from the `README.md` file
 4. Replace `TRACK_NAME_HERE` with your track's name in the `README.md` file
 5. Build the representer, conforming to the [Representer interface specification](https://github.com/exercism/docs/blob/main/building/tooling/representers/interface.md).
-   - Update the files to match your track's needs. At the very least, you'll need to update `bin/run.sh`, `Dockerfile` and the test solutions in the `tests` directory
+   - Update the files to match your track's needs. At the very least, you'll need to update `bin/run.sh`, `Dockerfile` and the test solutions in the `tests` directory.
+   The existing test solutions are suggestions for you could be testing, but remember to add your track-specific files too
    - Tip: look for `TODO:` comments to point you towards code that need updating
    - Tip: look for `OPTIONAL:` comments to point you towards code that _could_ be useful
 
