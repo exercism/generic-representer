@@ -19,14 +19,12 @@ for test_dir in tests/*; do
     test_dir_path=$(realpath "${test_dir}")
 
     bin/run.sh "${test_dir_name}" "${test_dir_path}" "${test_dir_path}"
-    exit_code=$?
 
     for file in representation.txt representation.json mapping.json; do
         expected_file="expected_${file}"
         echo "${test_dir_name}: comparing ${file} to ${expected_file}"
-        diff "${test_dir_path}/${file}" "${test_dir_path}/${expected_file}"
 
-        if [ $? -ne 0 ]; then
+        if ! diff "${test_dir_path}/${file}" "${test_dir_path}/${expected_file}"; then
             exit_code=1
         fi
     done
