@@ -17,43 +17,19 @@ exit_code=0
 for test_dir in tests/*; do
     test_dir_name=$(basename "${test_dir}")
     test_dir_path=$(realpath "${test_dir}")
-    representation_txt_file_path="${test_dir_path}/representation.txt"
-    expected_representation_txt_file_path="${test_dir_path}/expected_representation.txt"
-    representation_json_file_path="${test_dir_path}/representation.json"
-    expected_representation_json_file_path="${test_dir_path}/expected_representation.json"
-    mapping_json_file_path="${test_dir_path}/mapping.json"    
-    expected_mapping_json_file_path="${test_dir_path}/expected_mapping.json"
 
     bin/run.sh "${test_dir_name}" "${test_dir_path}" "${test_dir_path}"
-    test_exit_code=$?
+    exit_code=$?
 
-    if [[ -f "${expect_error}" ]]; then
-        if [[ $test_exit_code -eq 0 ]]; then
-            echo 'Expected non-zero exit code'
-            exit_code=1
-        fi
-    else
-        echo "${test_dir_name}: comparing representation.txt to expected_representation.txt"
-        diff "${representation_txt_file_path}" "${expected_representation_txt_file_path}"
+    for file in representation.txt representation.json mapping.json; do
+        expected_file="expected_${file}"
+        echo "${test_dir_name}: comparing ${file} to ${expected_file}"
+        diff "${test_dir_path}/${file}" "${test_dir_path}/${expected_file}"
 
         if [ $? -ne 0 ]; then
             exit_code=1
         fi
-
-        echo "${test_dir_name}: comparing representation.json to expected_representation.json"
-        diff "${representation_json_file_path}" "${expected_representation_json_file_path}"
-
-        if [ $? -ne 0 ]; then
-            exit_code=1
-        fi
-
-        echo "${test_dir_name}: comparing mapping.json to expected_mapping.json"
-        diff "${mapping_json_file_path}" "${expected_mapping_json_file_path}"
-
-        if [ $? -ne 0 ]; then
-            exit_code=1
-        fi
-    fi
+    done
 done
 
 exit ${exit_code}
