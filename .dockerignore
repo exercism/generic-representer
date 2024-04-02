@@ -1,3 +1,6 @@
+# Most of the file will be ignored, using an allow list is:
+# - Simpler: it shows which files are important for the representer
+# - Future-proof: it removes the risk to add unwanted files
 # Ignore everything to act as an allow list
 *
 
