@@ -1,8 +1,8 @@
-# Most of the file will be ignored, using an allow list is:
+# Most of the files will be ignored, using an allow list is:
 # - Simpler: it shows which files are important for the representer
-# - Future-proof: it removes the risk to add unwanted files
+# - Future-proof: it removes the risk to add unwanted files to the image
 # Ignore everything to act as an allow list
 *
 
-# Include retpresenter files
+# Include representer files
 !bin/run.sh
