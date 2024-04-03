@@ -1,8 +1,22 @@
-# Most of the files will be ignored, using an allow list is:
-# - Simpler: it shows which files are important for the representer
-# - Future-proof: it removes the risk to add unwanted files to the image
-# Ignore everything to act as an allow list
-*
+.appends/
+.git/
+.github/
+bin/run-in-docker.sh
+bin/run-tests-in-docker.sh
+bin/run-tests.sh
+tests/
+.dockerignore
+.gitattributes
+.gitignore
+CODE_OF_CONDUCT.md
+LICENSE
+README.md
 
-# Include representer files
-!bin/run.sh
+# It is also possible to use this file as an allow list. Some developers find it confusing.
+# This still have some advantages:
+# - No risk to embed unwanted files
+# - Clearly shows the important files for the representer
+# - Small effort to keep the list up-to-date: most of the time there is nothing to add
+# To use an allow list, removes the above ignores and uncomment the lines below.
+# *
+# !bin/run.sh
