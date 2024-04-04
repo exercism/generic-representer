@@ -12,11 +12,19 @@ CODE_OF_CONDUCT.md
 LICENSE
 README.md
 
-# It is also possible to use this file as an allow list. Some developers find it confusing.
-# This still have some advantages:
-# - No risk to embed unwanted files
-# - Clearly shows the important files for the representer
-# - Small effort to keep the list up-to-date: most of the time there is nothing to add
-# To use an allow list, removes the above ignores and uncomment the lines below.
+# The above lines define which files _not_ to copy into the Docker build context.
+# It is also possible to setup this file as an allow list, where by default everything 
+# is ignored and then exceptions are added for just those files that need to be copied
+# into the image.
+#
+# The benefits of this approach are:
+# - Reduces the size of the Docker build context
+# - No risk of accidentally embedding files into the image (e.g. secrets)
+# - Makes it explicit which files are actually used in the Docker image
+#
+# If you'd like to use this approach, removes the above lines and uncomment the below lines:
 # *
 # !bin/run.sh
+#
+# Of course, you'll also need to add exceptions for any other files that are
+# required by your Docker image.
