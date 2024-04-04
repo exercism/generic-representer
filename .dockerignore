@@ -11,3 +11,12 @@ tests/
 CODE_OF_CONDUCT.md
 LICENSE
 README.md
+
+# It is also possible to use this file as an allow list. Some developers find it confusing.
+# This still have some advantages:
+# - No risk to embed unwanted files
+# - Clearly shows the important files for the representer
+# - Small effort to keep the list up-to-date: most of the time there is nothing to add
+# To use an allow list, removes the above ignores and uncomment the lines below.
+# *
+# !bin/run.sh
