@@ -69,6 +69,16 @@ These are [golden tests][golden] that compare the `representation.txt` and `mapp
 
 When you've made modifications to the code that will result in a new "golden" state, you'll need to generate and commit a new `tests/<test-name>/expected_representation.txt` and `tests/<test-name>/expected_mapping.json` file.
 
+## Benchmarking
+
+There are two scripts you can use to benchmark the representer:
+
+1. `./bin/benchmark.sh`: benchmark the representer code
+2. `./bin/benchmark-in-docker.sh`: benchmark the Docker image
+
+These scripts can give a rough estimation of the representer's performance.
+Bear in mind though that the performance on Exercism' production server is often lower.
+
 [representers]: https://github.com/exercism/docs/tree/main/building/tooling/representers
 [golden]: https://ro-che.info/articles/2017-12-04-golden-tests
 [exercism]: https://exercism.io
