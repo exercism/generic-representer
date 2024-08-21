@@ -1,6 +1,6 @@
-# Exercism TRACK_NAME_HERE Representer
+# Exercism TRACK_NAME Representer
 
-The Docker image to automatically create a representation for TRACK_NAME_HERE solutions submitted to [Exercism].
+The Docker image to automatically create a representation for TRACK_NAME solutions submitted to [Exercism].
 
 ## Getting started
 
