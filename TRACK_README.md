@@ -1,6 +1,6 @@
-# Exercism TRACK_NAME Representer
+# Exercism replace-this-with-the-track-name Representer
 
-The Docker image to automatically create a representation for TRACK_NAME solutions submitted to [Exercism].
+The Docker image to automatically create a representation for replace-this-with-the-track-name solutions submitted to [Exercism].
 
 ## Getting started
 
