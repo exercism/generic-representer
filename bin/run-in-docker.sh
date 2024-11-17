@@ -30,7 +30,7 @@ output_dir="${3%/}"
 mkdir -p "${output_dir}"
 
 # Build the Docker image
-docker build --rm -t exercism/TRACK_SLUG-representer .
+docker build --rm -t exercism/replace-this-with-the-track-slug-representer .
 
 # Run the Docker image using the settings mimicking the production environment
 docker run \
@@ -40,4 +40,4 @@ docker run \
     --mount type=bind,source="${input_dir}",destination=/solution \
     --mount type=bind,source="${output_dir}",destination=/output \
     --mount type=tmpfs,destination=/tmp \
-    exercism/TRACK_SLUG-representer "${slug}" /solution /output 
+    exercism/replace-this-with-the-track-slug-representer "${slug}" /solution /output 
